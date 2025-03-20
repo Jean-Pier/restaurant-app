@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/screens/panel/panel_screen.dart';
 import 'package:restaurant_app/widgets/appbar.dart';
+import 'package:restaurant_app/widgets/icon_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,23 +25,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidgets(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PanelScreen(),
-                    ),
-                  );
-                },
-                child: Text('next'),
-              ),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            IconTextWidgets(label: 'Home'),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PanelScreen(),
+                  ),
+                );
+              },
+              child: Text('next'),
+            ),
+          ],
         ),
       ),
     );

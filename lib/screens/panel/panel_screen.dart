@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/screens/panel/data/data_screen.dart';
+import 'package:restaurant_app/screens/panel/photos/photos_screen.dart';
 import 'package:restaurant_app/widgets/appbar.dart';
+import 'package:restaurant_app/widgets/icon_text.dart';
 
 class PanelScreen extends StatefulWidget {
   const PanelScreen({super.key});
@@ -17,31 +19,7 @@ class _PanelScreenState extends State<PanelScreen> {
       appBar: AppBarWidgets(),
       body: Column(
         children: [
-          isDatosSelected
-              ? Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 10,
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.chevron_right,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      'Restaurant',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-              : Container(),
+          isDatosSelected ? IconTextWidgets(label: 'Restaurante') : Container(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -72,7 +50,7 @@ class _PanelScreenState extends State<PanelScreen> {
               ),
             ],
           ),
-          Expanded(child: isDatosSelected ? DataScreen() : Container()),
+          Expanded(child: isDatosSelected ? DataScreen() : PhotosScreen()),
         ],
       ),
     );

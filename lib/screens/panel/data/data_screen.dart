@@ -30,57 +30,55 @@ class _PanelScreenState extends State<DataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFieldWidgets(
-                textLabel: 'Nombre:',
-                controller: nombre,
-                hintText: 'Ingresen el Nombre',
-                inputType: TextInputType.text,
-              ),
-              TextFieldWidgets(
-                textLabel: 'RUC:',
-                controller: ruc,
-                hintText: 'Ingresen el RUC',
-                inputType: TextInputType.number,
-              ),
-              TextFieldWidgets(
-                textLabel: 'Latitud:',
-                controller: latitud,
-                hintText: 'Ingrese su Latitud',
-                inputType: TextInputType.text,
-                readOnly: true,
-              ),
-              TextFieldWidgets(
-                textLabel: 'Longitud:',
-                controller: longitud,
-                hintText: 'Ingrese su Longitud',
-                inputType: TextInputType.text,
-                readOnly: true,
-              ),
-              TextCommentWidgets(textLabel: 'Comentario:', controller: comment),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ButtonWidgets(
-                    label: 'Cancelar',
-                    onPressed: () {
-                      print('Cancelar');
-                    },
-                  ),
-                  ButtonWidgets(
-                    label: 'Registrar',
-                    onPressed: () {
-                      print('Reg');
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFieldWidgets(
+              textLabel: 'Nombre:',
+              controller: nombre,
+              hintText: 'Ingresen el Nombre',
+              inputType: TextInputType.text,
+            ),
+            TextFieldWidgets(
+              textLabel: 'RUC:',
+              controller: ruc,
+              hintText: 'Ingresen el RUC',
+              inputType: TextInputType.number,
+            ),
+            TextFieldWidgets(
+              textLabel: 'Latitud:',
+              controller: latitud,
+              hintText: 'Ingrese su Latitud',
+              inputType: TextInputType.text,
+              readOnly: true,
+            ),
+            TextFieldWidgets(
+              textLabel: 'Longitud:',
+              controller: longitud,
+              hintText: 'Ingrese su Longitud',
+              inputType: TextInputType.text,
+              readOnly: true,
+            ),
+            TextCommentWidgets(textLabel: 'Comentario:', controller: comment),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ButtonWidgets(
+                  label: 'Cancelar',
+                  onPressed: () {
+                    print('Cancelar');
+                  },
+                ),
+                ButtonWidgets(
+                  label: 'Registrar',
+                  onPressed: () {
+                    print('Reg');
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
