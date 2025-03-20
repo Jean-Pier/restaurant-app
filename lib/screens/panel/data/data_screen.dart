@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/widgets/appbar.dart';
+import 'package:restaurant_app/widgets/button.dart';
 import 'package:restaurant_app/widgets/text_comment.dart';
 import 'package:restaurant_app/widgets/text_field.dart';
 
@@ -30,7 +30,6 @@ class _PanelScreenState extends State<DataScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidgets(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -62,7 +61,24 @@ class _PanelScreenState extends State<DataScreen> {
                 inputType: TextInputType.text,
                 readOnly: true,
               ),
-              TextCommentWidgets(textLabel: 'Comentario:', controller: comment,),
+              TextCommentWidgets(textLabel: 'Comentario:', controller: comment),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ButtonWidgets(
+                    label: 'Cancelar',
+                    onPressed: () {
+                      print('Cancelar');
+                    },
+                  ),
+                  ButtonWidgets(
+                    label: 'Registrar',
+                    onPressed: () {
+                      print('Reg');
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
         ),

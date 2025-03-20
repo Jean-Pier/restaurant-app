@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/screens/panel/data_screen.dart';
+import 'package:restaurant_app/screens/panel/panel_screen.dart';
 import 'package:restaurant_app/widgets/appbar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const DataScreen(),
+                      builder: (context) => const PanelScreen(),
                     ),
                   );
                 },
