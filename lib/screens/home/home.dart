@@ -26,9 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   checkStatus() async {
     final response = await apiService.checkApiStatus();
-    debugPrint(response.body);
-    if (response.statusCode == 200) {
+    if (response) {
       debugPrint('En el 200');
+      // List<PhotoType> typesPhotos = await apiService.getPhotoTypes();
+      // print(typesPhotos);
     }
   }
 
