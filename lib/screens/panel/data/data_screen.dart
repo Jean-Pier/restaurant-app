@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:restaurant_app/core/api_service.dart';
 import 'package:restaurant_app/core/location_service.dart';
 import 'package:restaurant_app/widgets/button.dart';
 import 'package:restaurant_app/widgets/text_comment.dart';
@@ -13,11 +14,12 @@ class DataScreen extends StatefulWidget {
 }
 
 class _PanelScreenState extends State<DataScreen> {
-  final nombre = TextEditingController(text: "");
-  final ruc = TextEditingController(text: "");
-  final latitud = TextEditingController(text: "");
-  final longitud = TextEditingController(text: "");
-  final comment = TextEditingController(text: "");
+  final ApiService apiService = ApiService();
+  var nombre = TextEditingController(text: "");
+  var ruc = TextEditingController(text: "");
+  var latitud = TextEditingController(text: "");
+  var longitud = TextEditingController(text: "");
+  var comment = TextEditingController(text: "");
 
   @override
   void initState() {
@@ -30,7 +32,7 @@ class _PanelScreenState extends State<DataScreen> {
     super.dispose();
   }
 
-  void _fetchLocation() async {
+  _fetchLocation() async {
     try {
       Position? position = await LocationService.getCurrentLocation();
       if (position != null) {
@@ -44,6 +46,47 @@ class _PanelScreenState extends State<DataScreen> {
         print("Error: $e");
       });
     }
+  }
+
+  regRestaurant() async {
+    if (nombre.text.trim().isEmpty ||
+        ruc.text.trim().isEmpty ||
+        latitud.text.trim().isEmpty ||
+        longitud.text.trim().isEmpty ||
+        comment.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Todos los campos son obligatorios")),
+      );
+      return;
+    }
+
+    try {
+      var data = {
+        "name": nombre.text.trim(),
+        "ruc": ruc.text.trim(),
+        "latitude": latitud.text.trim(),
+        "longitude": longitud.text.trim(),
+        "comment": comment.text.trim(),
+      };
+      await apiService.registerRestaurant(data);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Restaurante registrado con éxito")),
+      );
+      clearRestaurant();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error al registrar el restaurante")),
+      );
+    }
+  }
+
+  clearRestaurant() {
+    nombre.clear();
+    ruc.clear();
+    latitud.clear();
+    longitud.clear();
+    comment.clear();
+    Navigator.pop(context);
   }
 
   @override
@@ -85,15 +128,12 @@ class _PanelScreenState extends State<DataScreen> {
               children: [
                 ButtonWidgets(
                   label: 'Cancelar',
-                  onPressed: () {
-                    print('Cancelar');
-                  },
+                  onPressed: () => clearRestaurant(),
                 ),
+                SizedBox(width: 15,),
                 ButtonWidgets(
                   label: 'Registrar',
-                  onPressed: () {
-                    print('Reg');
-                  },
+                  onPressed: () => regRestaurant(),
                 ),
               ],
             ),
