@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:restaurant_app/core/location_service.dart';
 import 'package:restaurant_app/widgets/button.dart';
 import 'package:restaurant_app/widgets/text_comment.dart';
 import 'package:restaurant_app/widgets/text_field.dart';
@@ -19,12 +21,29 @@ class _PanelScreenState extends State<DataScreen> {
 
   @override
   void initState() {
+    _fetchLocation();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _fetchLocation() async {
+    try {
+      Position? position = await LocationService.getCurrentLocation();
+      if (position != null) {
+        setState(() {
+          latitud.text = position.latitude.toString().trim();
+          longitud.text = position.longitude.toString().trim();
+        });
+      }
+    } catch (e) {
+      setState(() {
+        print("Error: $e");
+      });
+    }
   }
 
   @override
